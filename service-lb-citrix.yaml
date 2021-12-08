@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.citrix.com/service-type-0: 'ANY'
+  labels:
+    app: web-v1
+    vts: p9913
+  name: web-v1
+spec:
+  ports:
+  - name: web
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  - name: vts-status
+    port: 50001
+    protocol: TCP
+    targetPort: 50001
+  - name: metrics
+    port: 9913
+    protocol: TCP
+    targetPort: 9913
+  selector:
+    app: web-v1
+  type: LoadBalancer
+  loadBalancerIP: 74.74.74.74
